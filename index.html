@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="CSS/style.css" rel="stylesheet"/>
+</head>
+<body onload="callMe('https://sandboxapic.cisco.com/api/v0/host','GET')">
+<header>
+    <table>
+
+    </table>
+</header>
+<br/>
+<table id="table1" border="1">
+    <thead></thead>
+    <tbody></tbody>
+    <tfoot></tfoot>
+</table>
+<!--jquery plugins-->
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+function callMe(url,method)
+{
+    app.callService(url,method,false);
+    app.createTable("table1");
+}
+</script>
+</body>
+</html>
