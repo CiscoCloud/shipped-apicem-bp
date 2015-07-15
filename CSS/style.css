@@ -5,7 +5,7 @@ body{
 
 ul, li {list-style: none;}
 header .logo
-{margin:0px;background-color: #000000; padding: 20px;}
+{margin:0px;background-color: #000000;color: #ffffff; padding: 20px;font-family: Arial;font-size: x-large;}
 .back{
     text-decoration: none;
     color: #ff4b33;
