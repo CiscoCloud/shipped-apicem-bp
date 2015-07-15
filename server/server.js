@@ -1,5 +1,5 @@
 /*
-Server for Shipped CMX demo project
+Server for Shipped APIC-EM demo project
 
 Author: David Tootill 2015.07.15
 Copyright (C) Cisco, Inc.  All rights reserved.

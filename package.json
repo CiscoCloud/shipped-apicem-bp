@@ -1,16 +1,16 @@
 {
-    "name": "cmxdemo",
+    "name": "apicem",
     "version": "0.0.0",
-    "description": "This is a sample application for Shipped using the CMX API",
+    "description": "This is a sample APIC application for Shipped",
     "main": "server.js",
     "repository": {
     "type": "git",
-      "url": "git://github.com/CiscoCloud/shipped-cmxdemo"
+      "url": "git://github.com/CiscoCloud/shipped-apicem-bp"
     },
     "author": "Cisco",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/CiscoCloud/shipped-cmxdemo/issues"
+      "url": "https://github.com/CiscoCloud/shipped-apicem-bp/issues"
     },
     "dependencies": {
         "compression": "~1.4.4",
