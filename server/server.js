@@ -5,8 +5,7 @@ Author: David Tootill 2015.07.15
 Copyright (C) Cisco, Inc.  All rights reserved.
 */
 
-var express     = require("express");
-var bodyParser  = require("body-parser")
+var express     = require("express")
 var serveStatic = require("serve-static")
 var compression = require("compression")
 
@@ -18,9 +17,7 @@ nconf.argv()
 
 var app = express();
 app.use(compression())
-app.use(serveStatic(__dirname + "/../ui")) 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(serveStatic(__dirname + "/../ui"))
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*")
   next()
