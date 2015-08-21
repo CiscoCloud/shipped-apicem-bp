@@ -26,6 +26,7 @@ var app = (function(){
 
 
     return{
+		baseApiUrl:baseApiUrl,
         init: function() {
             $(".menuitem").on("click", function(event) {
                 root = $(this).attr("href");

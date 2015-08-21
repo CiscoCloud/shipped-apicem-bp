@@ -21,6 +21,12 @@
             <li><a class="menuitem" href="link">Link (<span id="linkCount"><div class="loader"></div></span>)</a></li>
             <li><a class="menuitem" href="location">Location (<span id="locationCount"><div class="loader"></div></span>)</a></li>
         </ul>
+		<li><a class="menuitem">Policy</a></li>
+        <ul>
+            <li><a class="menuitem" href="application">Application (<span id="applicationCount"><div class="loader"></div></span>)</a></li>
+            <li><a class="menuitem" href="category">Category (<span id="categoryCount"><div class="loader"></div></span>)</a></li>
+            <li><a class="menuitem" href="policy">Policy (<span id="policyCount"><div class="loader"></div></span>)</a></li>
+        </ul>
     </ul>
 </div>
 <div class="content cssTable">
@@ -40,10 +46,17 @@
 <script>
     app.init();
    // callMe('https://sandboxapic.cisco.com/api/v0/host','GET');
-    app.getCount('https://sandboxapic.cisco.com/api/v0/host/count','GET','false','hostCount');
-    app.getCount('https://sandboxapic.cisco.com/api/v0/network-device/count','GET','false','networkDeviceCount');
-    app.getCount('https://sandboxapic.cisco.com/api/v0/link/count','GET','false','linkCount');
-    app.getCount('https://sandboxapic.cisco.com/api/v0/location/count','GET','false','locationCount');
+   
+   var countConfig=[
+   {url:'host',elemId:'hostCount'},{url:'network-device',elemId:'networkDeviceCount'},
+   {url:'link',elemId:'linkCount'},{url:'location',elemId:'locationCount'},
+   {url:'application',elemId:'applicationCount'},{url:'category',elemId:'categoryCount'},
+   {url:'policy',elemId:'policyCount'}];
+   
+   countConfig.forEach(function(config){
+       app.getCount(app.baseApiUrl+config.url+'/count','GET','false',config.elemId);
+   });
+   
 function callMe(url,method)
 {
     app.callService(url,method,false);
