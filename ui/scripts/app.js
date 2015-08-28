@@ -1,4 +1,4 @@
-var app = (function(){
+var app = (function(nx){
     var headers = [];
     var tableRows = [];
     var colMin = 1;
@@ -23,10 +23,88 @@ var app = (function(){
             headers.push(key);
         });
     };
+    var routingParams=[];
 
+
+
+    var updateSourceDestination= function (){
+
+        var condition=(routingParams.length==0);
+        var source=(condition)?'?':routingParams[0];
+        var destination=(condition)?'?':routingParams[1];
+        $("#source").text(source);
+        $("#destination").text(destination);
+    };
+    var Shell = nx.define(nx.ui.Application, {
+        methods: {
+            start: function (topoLogyData) {
+                //your application main entry
+                var topodata = topoLogyData;
+                // initialize a topology
+                var topo = new nx.graphic.Topology({
+                    // set the topology view's with and height
+                    width: 800,
+                    height: 800,
+                    // node config
+                    nodeConfig: {
+                        // label display name from of node's model, could change to 'model.id' to show id
+                        label: 'model.id'
+                    },
+                    // link config
+                    linkConfig: {
+                        // multiple link type is curve, could change to 'parallel' to use parallel link
+                        linkType: 'parallel'
+                    },
+                    // show node's icon, could change to false to show dot
+                    showIcon: true
+                });
+
+                //set data to topology
+                topo.data(topodata);
+                //attach topology to document
+                console.log(topo);
+                topo.attach(this);
+            },
+            getContainer: function() {
+                return new nx.dom.Element(document.getElementById('topo-container'));
+            }
+
+        }
+    });
+    var shell=new Shell();
+
+
+    var sampleTopologyData = {
+        nodes: [
+            {"id": 0, "x": 410, "y": 100, "name": "12K-1"},
+            {"id": "7895a45f-47aa-42ee-9d06-c66d3b784594", "x": 410, "y": 280, "name": "12K-2"},
+            {"id": 2, "x": 660, "y": 280, "name": "Of-9k-03"},
+            {"id": 3, "x": 660, "y": 100, "name": "Of-9k-02"},
+            {"id": 4, "x": 180, "y": 190, "name": "Of-9k-01"}
+        ],
+        links: [
+            {"source": 0, "target": "7895a45f-47aa-42ee-9d06-c66d3b784594"},
+            {"source": "7895a45f-47aa-42ee-9d06-c66d3b784594", "target": 2},
+            {"source": "7895a45f-47aa-42ee-9d06-c66d3b784594", "target": 3},
+            {"source": 4, "target": "7895a45f-47aa-42ee-9d06-c66d3b784594"},
+            {"source": 4, "target": 2},
+            {"source": 2, "target": 3},
+            {"source": 2, "target": 0},
+            {"source": 3, "target": 0},
+            {"source": 3, "target": 0},
+            {"source": 3, "target": 0},
+            {"source": 0, "target": 4},
+            {"source": 0, "target": 4},
+            {"source": 0, "target": 3}
+        ]
+    };
 
     return{
+        clearRoutingParams:function(){
+            routingParams=[];
+        },
 		baseApiUrl:baseApiUrl,
+        updateSourceDestination:updateSourceDestination,
         init: function() {
             $(".menuitem").on("click", function(event) {
                 root = $(this).attr("href");
@@ -41,6 +119,19 @@ var app = (function(){
                 app.callService($(this).attr("href"),'GET',false);
                 app.createTableDescription("table1");
             });
+
+            $("body").on("click","a.hostIp",function(event){
+
+
+                event.preventDefault();
+                var ip=$(this).attr("id");
+                if(routingParams.length==2){
+                    routingParams=[];
+                }
+                routingParams.push(ip);
+                updateSourceDestination();
+            });
+
             $("div").on("click","#backUrl", function(event){
                 event.preventDefault();
                 app.callService($(this).attr("href"),'GET',false);
@@ -76,6 +167,37 @@ var app = (function(){
                 }
             });
         },
+		getTopology:function(source,destination){
+
+            if(routingParams.length!=2){
+                alert('Source/Destination missing or the same');
+                return false;
+            }
+
+
+			 $.ajax({
+				url:app.baseApiUrl+'routing-path/'+routingParams[0]+'/'+routingParams[1],
+				success:function(data){
+                    $('#topo-container').html("");
+                    var mapping=formatJson.updateData(data);
+                    $('.nav-tabs a[href="#topology"]').tab('show')
+                   //shell.start(sampleTopologyData);
+                    try {
+                        var topologyData={nodes: mapping.nodes, links: mapping.links};
+                        console.log(JSON.stringify(topologyData));
+                        shell.start(topologyData);
+
+                    }
+                    catch(ex){
+                        console.log(ex);
+                        console.log('error while rendering topology');
+                        console.log('using sample data');
+                        shell.start(sampleTopologyData);
+                    }
+				}
+			 });
+			
+		},
         createTable : function(elId){
             $("#"+elId).find('thead').empty();
             $("#"+elId).find('tbody').empty();
@@ -100,7 +222,13 @@ var app = (function(){
                         if (j == "id") {
                             var td = '<td><a class="child" href="'+baseApiUrl+root+"/"+tableRows[k][j]+'">' + tableRows[k][j] + '</a></td>';
                             tr = tr + td;
-                        } else {
+                        }// Need to Generalize this
+                        else if(j =='hostIp'){
+                            var td = '<td><a class="hostIp" href="#" id="'+tableRows[k][j]+'">' + tableRows[k][j] + '</a></td>';
+                            tr = tr + td;
+                        }
+
+                        else {
                             var td = '<td>' + tableRows[k][j] + '</td>';
                             tr = tr + td;
                         }
@@ -157,4 +285,4 @@ var app = (function(){
         }
     }
 
-})();
+})(nx);

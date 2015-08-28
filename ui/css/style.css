@@ -12,26 +12,15 @@ header .logo
     font-size: 14px;
     font-weight: bold;
 }
-table{
-    border-collapse: collapse;
-    width: 100%;
 
-}
-table th{
-    text-transform: capitalize;
-
-}
-table td,th{
-    border-collapse: collapse;
-    font-size: small;
-    padding: 10px;
-}
-table tbody tr{
-    background-color: #ffffff;
-}
 html, body {height:100%;margin:0px;}
 .sidebar{width:15%;float:left;font-size: small;}
-.content{width:84% !important;float:left;overflow:auto;height:100%;max-height: 90%;}
+.content{
+    float: left;
+    overflow-x: scroll;
+    height: 100%;
+    width: 100%;
+}
 
 .loader {
     background-image: url("ajax-loader.gif");
@@ -122,4 +111,21 @@ ul li {
 .cssTable tr:first-child td:last-child{
     border-width:0px 0px 1px 1px;
 }
+
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #DDD;
+}
+
+.topo-container {
+    border: solid 1px #DDD;
+    border-top-width: 0px;
+    height: 100%;
+}
+
 /*end of css table*/
