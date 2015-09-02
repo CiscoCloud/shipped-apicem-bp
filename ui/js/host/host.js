@@ -25,12 +25,17 @@ var topoconfig = (function(nx, global) {
                     props: {
                         adaptive: true,
                         identityKey:'id',
+                        width: 600,
+                    	height: 600,
                         nodeConfig: {
                             label: function(vertex) {
                                 return vertex.get("label");
                             },
                             iconType: '{#icon}'
                         },
+ 			linkConfig: {
+                     	   linkType: 'curve'
+                    	},
                         nodeSetConfig: {
                             iconType: 'model.deice_type'
                         },
