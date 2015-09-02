@@ -6,8 +6,14 @@ var topoconfig = (function(nx, global) {
                 icon: {
                     value: function() {
                         return function(vertex) {
-                            var id = vertex.get("deviceType");
-                            return id
+                           var type = vertex.get("nodeType");
+						if(type=="host")
+						{
+							return "host"
+						}
+						else{
+						return vertex.get("deviceType");
+						}
                         }
                     }
                 }
