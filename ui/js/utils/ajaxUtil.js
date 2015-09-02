@@ -109,12 +109,10 @@ var datatableUtil  =(function(ajaxUtil){
 
     }
     var setTopoDropDown = function (list) {
-
-
           var source   = $("#dropdownId").html();
           var template = Handlebars.compile(source);
-          $("#sourceDD").append(template(list));
-          $("#targetDD").append(template(list));
+          $("#sourceDD").html("<option>--Source--</option>"+template(list));
+          $("#targetDD").html("<option>--Destination--</option>"+template(list));
 
     }
 
