@@ -60,23 +60,32 @@
 
     <div class="tab-content">
 		<div id="topology" class="tab-pane fade in active">
-            <div id="topo-container"></div>
+            <div id="topo-container"><div class="loader"></div></div>
         </div>       
 	   <div id="host" class="tab-pane fade in ">
             <div class="panel panel-default">
                 <div class="panel-heading">
-					<span style="color:green" id="host-header">
-                       <select id="sourceDD" style="width: 15%">
-							<option>--Source--</option>
-                       </select>
-
-                        <select id="targetDD" style="width: 15%">
-							<option>--Destination--</option>
+                    <div class="row">
+                        <div class="col-md-2">
+                        <select class="form-control" id="sourceDD" >
+                            <option>--Source--</option>
                         </select>
-                    </span>
+                            </div>
+                            <div class="col-md-2">
+                        <select class="form-control" id="targetDD"  >
+                            <option>--Destination--</option>
+                        </select>
+                        </div>
+                        <div class="col-md-8">
 
-                    <button onclick="getTopology()" class="btn btn-primary">Get Topology</button>
-                    <button onclick="clearRoutingParams()" class="btn btn-danger">Clear</button>
+                            <button onclick="getTopology()" class="btn btn-primary">Get Topology</button>
+                            <button onclick="clearRoutingParams()" class="btn btn-danger">Clear</button>
+
+                            </div>
+                    </div>
+					<span style="color:green" id="host-header">
+
+                    </span>
 
                 </div>
                 <div class="panel-body">
@@ -160,7 +169,7 @@
         <tr>
             {{#each .}}
             {{#ifCond @key "id"}}
-            <td><a href="#" class="detaillink" id="{{this}}">{{this}}</a></td>
+            <td><a href="#" class="detaillink" id="{{this}}"><i title="View More Details" class="glyphicon glyphicon-new-window"></i></a></td>
             {{else}}
                 <td>{{this}}</td>
             {{/ifCond}}
