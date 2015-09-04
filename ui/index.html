@@ -56,7 +56,7 @@
 
     <ul class="nav nav-tabs nav-justified">
           <li class="active"><a data-toggle="tab" href="#topology">Topology</a></li>
-		<li ><a data-toggle="tab" href="#host">Network Host</a></li>
+		<li ><a data-toggle="tab" href="#host" id="networkHost">Network Host</a></li>
       
     </ul>
 
@@ -66,8 +66,8 @@
         </div>       
 	   <div id="host" class="tab-pane fade in ">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="row">
+                <div id="host-header" class="panel-heading">
+                    <div class="row" >
                         <div class="col-md-3">
                         <select class="form-control" id="sourceDD" >
                             <option>--Source--</option>
@@ -82,10 +82,6 @@
                             <button onclick="getTopology()" class="btn btn-primary">Get Topology</button>
                             </div>
                     </div>
-					<span style="color:green" id="host-header">
-
-                    </span>
-
                 </div>
                 <div class="panel-body">
                     <div class="content ">
@@ -190,6 +186,7 @@
 </script>
 
 <script>
+    document.getElementById("host-header").style.visibility='hidden';
     app.init();
     function getTopology(){
          var source = $('#sourceDD  option:selected').text();

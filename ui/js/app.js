@@ -14,6 +14,17 @@ var app = (function(nx,ajaxUtil,datatableUtil,host){
             $(".menuitem").on("click", function(event) {
                 event.preventDefault();
                 var module = $(this).attr("href");
+                if(module=="host")
+                {
+                    document.getElementById("tableHolder").style.marginTop="0px";
+                    document.getElementById("host-header").style.visibility='visible';
+                }
+                else
+                {
+                    document.getElementById("host-header").style.visibility='hidden';
+                    document.getElementById("tableHolder").style.marginTop="-50px";
+                }
+                document.getElementById("networkHost").innerHTML = stringUtil.camelCaseToHumanReadable(module);
                 datatableUtil.showList(module)
 
             });

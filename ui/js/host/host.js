@@ -52,8 +52,6 @@ var topoconfig = (function(nx, global) {
         nodeconfig:nodeconfig
     }
 
-
-
 })(nx, nx.global);
 
 var host = (function(nx,ajaxUtil){
