@@ -11,6 +11,7 @@ var app = (function(nx,ajaxUtil,datatableUtil,host){
     return{
 
         init: function() {
+            document.getElementById("host-header").style.visibility='hidden';
             $(".menuitem").on("click", function(event) {
                 event.preventDefault();
                 var module = $(this).attr("href");

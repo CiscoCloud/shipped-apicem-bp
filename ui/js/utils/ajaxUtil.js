@@ -81,7 +81,6 @@ var datatableUtil = (function (ajaxUtil) {
             $('a.detaillink').click(function (e) {
                 e.preventDefault();
                 var id = $(this).attr('id');
-
                 if (list.length > 0) {
                     var item = _.findWhere(list, {id: id});
                     var source = $("#detailtable").html();
@@ -101,14 +100,16 @@ var datatableUtil = (function (ajaxUtil) {
         tableObj.columns = config.columns;
         console.log(tableObj.columns);
         var rows = (data.response).map(function (item) {
-            var obj = _.pick(item, tableObj.columns);
-            //console.log(obj);
-            var reorderedValues = _.union(_.filter(_.values(obj), function (prop, index) {
-                return index != 0;
-            }), [_.values(obj)[0]]);
-            //console.log(reorderedValues);
+            // var obj = _.pick(item, tableObj.columns);
+            // //console.log(obj);
+            // var reorderedValues = _.union(_.filter(_.values(obj), function (prop, index) {
+            //     return index != 0;
+            // }), [_.values(obj)[0]]);
+            // //console.log(reorderedValues);
 
-            return _.object(tableObj.columns, reorderedValues);
+            // return _.object(tableObj.columns, reorderedValues);
+
+           return _.pick(item, tableObj.columns);
 
         });
 
@@ -146,20 +147,20 @@ var datatableUtil = (function (ajaxUtil) {
     var modulesConfig = {
 
         "host": {
-            "columns": ["id", "hostMac", "hostIp", "hostType", "connectedInterfaceName", "vlanId", "numUpdates", "userStatus"]
+            "columns": [ "hostMac", "hostIp", "hostType", "connectedInterfaceName", "vlanId", "numUpdates", "userStatus","id"]
         },
         "network-device": {
-            "columns": ["id", "hostname", "macAddress", "type", "vendor", "family", "numUpdates"]
+            "columns": [ "hostname", "macAddress", "type", "vendor", "family", "numUpdates","id"]
         }, "link": {
-            "columns": ["id", "startDeviceId", "startPortId", "endDeviceId", "endPortId", "linkStatus", "endDeviceHostName"]
+            "columns": [ "startDeviceId", "startPortId", "endDeviceId", "endPortId", "linkStatus", "endDeviceHostName","id"]
         }, "location": {
-            "columns": ["id", "civicAddress", "geographicalAddress", "description", "locationName"]
+            "columns": [ "civicAddress", "geographicalAddress", "description", "locationName","id"]
         }, "application": {
-            "columns": ["id", "applicationGroup", "category", "subCategory", "name", "references", "appProtocol"]
+            "columns": [ "applicationGroup", "category", "subCategory", "name", "references", "appProtocol","id"]
         }, "category": {
-            "columns": ["id", "name"]
+            "columns": [ "name","id"]
         }, "policy": {
-            "columns": ["id", "policyName", "policyOwner", "resource", "state", "taskId"]
+            "columns": ["policyName", "policyOwner", "state", "taskId","id"]
         }
     }
 

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="lib/bootgrid/bootgrid.css">
     <link rel="stylesheet" href="lib/select2/select2.min.css">
+    <link rel="stylesheet" href="css/app.css">
 
 </head>
 <body>
@@ -62,7 +63,15 @@
 
     <div class="tab-content">
 		<div id="topology" class="tab-pane fade in active">
-            <div id="topo-container"><div class="loader"></div></div>
+            <div class="row">
+                <div class="col-md-11"><div id="topo-container"></div></div>
+                <div class="col-md-1">
+                <button type="button" class="btn btn-primary btn btn-primary pull-right topobutton" onClick="host.showPhysicalTopology();">
+                    Show full topology
+                </button>
+                </div>
+
+            </div>
         </div>       
 	   <div id="host" class="tab-pane fade in ">
             <div class="panel panel-default">
@@ -177,8 +186,6 @@
     </table>
 </script>
 
-
-
 <script type="text/x-handlebars" id="dropdownId">
     {{#each .}}
     <option value="{{id}}">{{text}}</option>
@@ -186,7 +193,6 @@
 </script>
 
 <script>
-    document.getElementById("host-header").style.visibility='hidden';
     app.init();
     function getTopology(){
          var source = $('#sourceDD  option:selected').text();
