@@ -109,13 +109,13 @@ var datatableUtil = (function (ajaxUtil) {
 
             // return _.object(tableObj.columns, reorderedValues);
 
-           return _.pick(item, tableObj.columns);
+            return _.pick(item, tableObj.columns);
 
         });
 
         var cols = _.union(_.difference(config.columns, ['id']), ['']);
         tableObj.columns = cols.map(function (column) {
-           return  column.replace(/([A-Z])/g, ' $1')
+            return column.replace(/([A-Z])/g, ' $1')
                 .replace(/^./, function (str) {
                     return str.toUpperCase();
                 });
@@ -147,20 +147,20 @@ var datatableUtil = (function (ajaxUtil) {
     var modulesConfig = {
 
         "host": {
-            "columns": [ "hostMac", "hostIp", "hostType", "connectedInterfaceName", "vlanId", "numUpdates", "userStatus","id"]
+            "columns": ["hostMac", "hostIp", "hostType", "connectedInterfaceName", "vlanId", "numUpdates", "userStatus", "id"]
         },
         "network-device": {
-            "columns": [ "hostname", "macAddress", "type", "vendor", "family", "numUpdates","id"]
+            "columns": ["hostname", "macAddress", "type", "vendor", "family", "numUpdates", "id"]
         }, "link": {
-            "columns": [ "startDeviceId", "startPortId", "endDeviceId", "endPortId", "linkStatus", "endDeviceHostName","id"]
+            "columns": ["startDeviceId", "startPortId", "endDeviceId", "endPortId", "linkStatus", "endDeviceHostName", "id"]
         }, "location": {
-            "columns": [ "civicAddress", "geographicalAddress", "description", "locationName","id"]
+            "columns": ["civicAddress", "geographicalAddress", "description", "locationName", "id"]
         }, "application": {
-            "columns": [ "applicationGroup", "category", "subCategory", "name", "references", "appProtocol","id"]
+            "columns": ["applicationGroup", "category", "subCategory", "name", "references", "appProtocol", "id"]
         }, "category": {
-            "columns": [ "name","id"]
+            "columns": ["name", "id"]
         }, "policy": {
-            "columns": ["policyName", "policyOwner", "state", "taskId","id"]
+            "columns": ["policyName", "policyOwner", "state", "taskId", "id"]
         }
     }
 
