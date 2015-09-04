@@ -95,27 +95,33 @@ var datatableUtil = (function (ajaxUtil) {
     };
 
     //refactor use Immutable Data structures,reduce mutations
-    //refactor
     var setTable = function (data, config) {
         var tableObj = {};
         //var cols= _.union(_.difference(config.columns,['id']),['View More']);
-        tableObj.columns=config.columns;
+        tableObj.columns = config.columns;
         console.log(tableObj.columns);
         var rows = (data.response).map(function (item) {
             var obj = _.pick(item, tableObj.columns);
             //console.log(obj);
-            var reorderedValues= _.union( _.filter(_.values(obj),function(prop,index){
-               return index!=0;
+            var reorderedValues = _.union(_.filter(_.values(obj), function (prop, index) {
+                return index != 0;
             }), [_.values(obj)[0]]);
             //console.log(reorderedValues);
 
-            return _.object(tableObj.columns,reorderedValues);
+            return _.object(tableObj.columns, reorderedValues);
 
         });
-        console.log(rows)
-        var cols= _.union(_.difference(config.columns,['id']),['']);
-        tableObj.columns=cols
-        rows=rows.map(function (row) {
+
+        var cols = _.union(_.difference(config.columns, ['id']), ['']);
+        tableObj.columns = cols.map(function (column) {
+           return  column.replace(/([A-Z])/g, ' $1')
+                .replace(/^./, function (str) {
+                    return str.toUpperCase();
+                });
+
+        });
+
+        rows = rows.map(function (row) {
 
             var reorderedKeys = _.difference(_.keys(row), ['id']);
             reorderedKeys.push('id');
