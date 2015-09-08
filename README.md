@@ -26,15 +26,20 @@ Sample topology that this sample implements.
 
 More details on NextUI toolkit : https://developer.cisco.com/site/NeXt-test/
 
-### Sample Application Code details
+##Sample Application Code details
 
-Sample Application access two cisco product API's one is APIC-EM and NeXtUI to display toplogy. This sample application is developed in simple HTML CSS Jquery which can be easily customized.
+Sample Application access two cisco product API's one is APIC-EM and NeXtUI to display topology. This sample application is developed in simple HTML CSS Jquery which can be easily customized.
 
-##Server Installation
+###Server Installation
 
 The server is a node.js application. To run, install node.js and then invoke the script bin/run. The default port is 3000. Edit config.json to change it.
 
-##Run Application
+###Run Application
 
 The APIC-EM-BP is a jquery application served on the same port. To invoke application, use any browser(Chrome recommended) to navigate hit http://localhost:3000
 
+###FAQ's
+-Topology will be available for Host. 
+-To get Topology between two host IP, We need two choose source and destination IP address.
+-To view full topology we need to go to Topology tab and click on "Show Full Topology" button.
+-To get detail view of any API call, We need to check the last coloum which is view more detail option in each data table, to get complete view of that minimal list data.
