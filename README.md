@@ -26,20 +26,39 @@ Sample topology that this sample implements.
 
 More details on NextUI toolkit : https://developer.cisco.com/site/NeXt-test/
 
-##Sample Application Code details
+##Sample Application & Code details
 
-Sample Application access two cisco product API's one is APIC-EM and NeXtUI to display topology. This sample application is developed in simple HTML CSS Jquery which can be easily customized.
+Sample Application accesses two cisco product APIs, one is APIC-EM and the other is NeXtUI to display the respective topologies. It is developed in simple HTML,CSS and JQuery which can be easily customized.
 
-###Server Installation
+###Code Structure
 
-The server is a node.js application. To run, install node.js and then invoke the script bin/run. The default port is 3000. Edit config.json to change it.
+The Sample application consists of following folder structure.
+/bin -> Makes the Application executable
+/server -> Node.js Server to host the application
+/ui -> Consists of Core Sample Application.
 
-###Run Application
+We are consuming APIs from APIC-EM
+https://sandboxapic.cisco.com this is the sandbox url for APIC-EM api.
+As it is sandbox so anyone can access it, please login there with temporary user id and password mentioned on the same page.
 
-The APIC-EM-BP is a jquery application served on the same port. To invoke application, use any browser(Chrome recommended) to navigate hit http://localhost:3000
+You can extend our application by calling these sandbox APIs, like we did for Host API, Inventory API, Policy API etc.
+Please follow the illustration below in order to understand the process of API consumption
+- Navigate to the link for Host API call: https://github.com/CiscoCloud/shipped-apicem-bp/blob/master/ui/js/inventory/host.js
+- We have created Parent functions to set host API data in UI dataTable,please follow the mentioned path 
+    ui>js>util> ajaxUtils.js & tableUtils.js to bind and consume host API
+- Pick minimal set of columns as done for sample API to show in GUI .
+- Follow sample code to add links in html page.
 
-###FAQ's
--Topology will be available for Host. 
--To get Topology between two host IP, We need two choose source and destination IP address.
--To view full topology we need to go to Topology tab and click on "Show Full Topology" button.
--To get detail view of any API call, We need to check the last coloum which is view more detail option in each data table, to get complete view of that minimal list data.
+We have few more API for topology.
+- https://sandboxapic.cisco.com:443/api/v0/topology/physical-topology ,this api will provide us full physical topology of network system.
+- https://sandboxapic.cisco.com/api/v0/routing-path/{Source IP}/{Destination IP} to get individual API call between two host, We need to use this api, just replace source and destination ip's.
+Actually we are bypass our host ip address which we are getting from Host API call to this above API to generate the Host topology.
+
+- To generate Topology we are using NeXt UI framework of cisco as you find the details in  ui>js>util> topologyUtils.js file.
+
+
+###Note
+- Topology will be available for Host. 
+- To get Topology between two host IP, We need two choose source and destination IP address.
+- To view full topology we need to go to Topology tab and click on "Show Full Topology" button.
+- To get detail view of any API call, We need to check the last coloum which is view more detail option in each data table, to get complete view of that minimal list data.
