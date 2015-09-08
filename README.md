@@ -33,9 +33,9 @@ Sample Application accesses two cisco product APIs, one is APIC-EM and the other
 ###Code Structure
 
 The Sample application consists of following folder structure.
-/bin -> Makes the Application executable
-/server -> Node.js Server to host the application
-/ui -> Consists of Core Sample Application.
+- /bin -> Makes the Application executable
+- /server -> Node.js Server to host the application
+- /ui -> Consists of Core Sample Application.
 
 We are consuming APIs from APIC-EM
 https://sandboxapic.cisco.com this is the sandbox url for APIC-EM api.
