@@ -38,12 +38,12 @@ The Sample application consists of following folder structure.
 - /ui -> Consists of Core Sample Application.
 
 We are consuming APIs from APIC-EM
-https://sandboxapic.cisco.com this is the sandbox url for APIC-EM api.
+https://sandboxapic.cisco.com, this is the sandbox url for APIC-EM APIs.
 As it is sandbox so anyone can access it, please login there with temporary user id and password mentioned on the same page.
 
 You can extend our application by calling these sandbox APIs, like we did for Host API, Inventory API, Policy API etc.
 Please follow the illustration below in order to understand the process of API consumption
-- Navigate to the link for Host API call: https://github.com/CiscoCloud/shipped-apicem-bp/blob/master/ui/js/inventory/host.js
+- Navigate to the link for Host API call: https://github.com/CiscoCloud/shipped-apicem-bp/blob/master/ui/js/inventory/host.js and see how we consume the host API
 - We have created Parent functions to set host API data in UI dataTable,please follow the mentioned path 
     ui>js>util> ajaxUtils.js & tableUtils.js to bind and consume host API
 - Pick minimal set of columns as done for sample API to show in GUI .
@@ -52,13 +52,15 @@ Please follow the illustration below in order to understand the process of API c
 We have few more API for topology.
 - https://sandboxapic.cisco.com:443/api/v0/topology/physical-topology ,this api will provide us full physical topology of network system.
 - https://sandboxapic.cisco.com/api/v0/routing-path/{Source IP}/{Destination IP} to get individual API call between two host, We need to use this api, just replace source and destination ip's.
-Actually we are bypass our host ip address which we are getting from Host API call to this above API to generate the Host topology.
+
+We had used this API to show the routing path between two host within a network. We just need to replace the source and destination ip's and bypass this json data into topology call to get mapping, please follow the sample code.
 
 - To generate Topology we are using NeXt UI framework of cisco as you find the details in  ui>js>util> topologyUtils.js file.
-
 
 ###Note
 - Topology will be available for Host. 
 - To get Topology between two host IP, We need two choose source and destination IP address.
 - To view full topology we need to go to Topology tab and click on "Show Full Topology" button.
 - To get detail view of any API call, We need to check the last coloum which is view more detail option in each data table, to get complete view of that minimal list data.
+
+###Please follow sample code, we try to keep it very simple to further customize it. Kindly post your comment in case of any concerns. 
