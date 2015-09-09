@@ -63,4 +63,3 @@ We had used this API to show the routing path between two host within a network.
 - To view full topology we need to go to Topology tab and click on "Show Full Topology" button.
 - To get detail view of any API call, We need to check the last coloum which is view more detail option in each data table, to get complete view of that minimal list data.
 
-###Please follow sample code, we try to keep it very simple to further customize it. Kindly post your comment in case of any concerns. 
